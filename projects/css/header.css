@@ -1,0 +1,19 @@
+header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #f0e9e9;
+        }
+
+        .logo {
+            color: blue;
+            font-size: 24px;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: black;
+            font-weight: 500;
+        }
