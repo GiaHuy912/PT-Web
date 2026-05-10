@@ -1,0 +1,18 @@
+.contact-section {
+    padding: 30px 50px;
+    background-color: #f5f5f5;
+}
+
+.contact-section h2{
+    text-align: center;
+}
+
+.contact-container {
+    display: flex;
+}
+.contact-form{
+    width: 65%;
+    background-color: white;
+    padding: 30px ; 
+    border-radius: 10px;
+}
