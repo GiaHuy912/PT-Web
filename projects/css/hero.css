@@ -1,9 +1,9 @@
 main {
-            padding :0px;
+            padding : 0px;
         }
 
         .hero {
-           min-height: 70vh;
+           min-height: 50vh;
            display: flex;
            flex-direction: column;
            justify-content: center;
