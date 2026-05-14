@@ -200,3 +200,81 @@ h1 {
 - Kết quả:
   - Chữ sẽ có màu đỏ vì Inline CSS thắng.
 
+
+### Câu A2:
+ 
+1. 'h1'
+ -> chọn: **Shop tlu**
+-Giải thích:
+  - Selector `h1` chọn tất cả thẻ `<h1>` trong trang.
+  - Trong HTML chỉ có 1 thẻ `<h1>` chứa text `ShopTLU`.
+
+2. `.price`
+→ Chọn:
+- **25.990.000đ**
+- **45.990.000đ**
+
+- Giải thích:
+  - Selector `.price` chọn tất cả elements có class `price`.
+  - Có 2 thẻ `<p class="price">`.
+
+3. `#app header`
+→ Chọn:
+- toàn bộ thẻ:
+
+```html
+<header class="top-bar dark">
+```
+
+- Giải thích:
+  - `#app` chọn element có id `app`.
+  - `header` chọn thẻ `<header>` nằm bên trong `#app`.
+
+4. `nav a:first-child`
+→ Chọn:
+- **Home**
+
+- Giải thích:
+  - `a:first-child` chọn thẻ `<a>` đầu tiên trong `<nav>`.
+  - Link đầu tiên có text `Home`.
+
+5. `.product.featured h2`
+→ Chọn:
+- **MacBook Pro**
+
+- Giải thích:
+  - `.product.featured` chọn element có đồng thời class:
+    - `product`
+    - `featured`
+  - `h2` chọn thẻ `<h2>` bên trong element đó.
+
+6. `article > p`
+→ Chọn:
+- **25.990.000đ**
+- **Mô tả sản phẩm...**
+- **45.990.000đ**
+- **Mô tả sản phẩm...**
+
+- Giải thích:
+  - `>` là child selector.
+  - Chọn tất cả thẻ `<p>` là con trực tiếp của `<article>`.
+
+7. `a[href="/"]`
+→ Chọn:
+- **Home**
+
+- Giải thích:
+  - Selector này chọn thẻ `<a>` có thuộc tính:
+
+```html
+href="/"
+```
+8. `.top-bar.dark h1`
+→ Chọn:
+- **ShopTLU**
+
+- Giải thích:
+  - `.top-bar.dark` chọn element có cả 2 class:
+    - `top-bar`
+    - `dark`
+  - `h1` chọn thẻ `<h1>` bên trong element đó.
