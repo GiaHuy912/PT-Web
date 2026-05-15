@@ -676,6 +676,31 @@ nên rule này sẽ được ưu tiên áp dụng trước.
 
 Chỉ khi nhiều rules cùng có `!important` thì trình duyệt mới tiếp tục so specificity.
 
+## Câu B1:
+
+# Các loại selectors đã sử dụng
+
+```
+1. Element selector:
+   body, table, footer
+
+2. Class selector:
+   .active, .profile
+
+3. ID selector:
+   #main-header
+
+4. Descendant selector:
+   nav a
+   .profile p
+
+5. Pseudo-class selector:
+   nav a:hover
+   tr:hover
+   tr:nth-child(even)
+```
+
+
 ## Câu C1 (10đ) — Debug CSS Layout
 
 ### Đề bài
