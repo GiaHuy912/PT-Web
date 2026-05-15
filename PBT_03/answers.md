@@ -700,6 +700,93 @@ Chỉ khi nhiều rules cùng có `!important` thì trình duyệt mới tiếp 
    tr:nth-child(even)
 ```
 
+## Câu B2:
+## Phần 1 — Content-box vs Border-box
+
+### Hộp 1 (content-box)
+
+```text
+Chiều rộng thực tế:
+300 + (20 x 2) + (5 x 2)
+= 350px
+```
+
+→ Hộp 1 = **350px**
+
+---
+
+### Hộp 2 (border-box)
+
+```text
+Chiều rộng thực tế:
+= 300px
+```
+
+→ Hộp 2 = **300px**
+
+---
+
+### Giải thích sự khác biệt
+
+- `content-box`:
+  - width chỉ tính phần content
+  - padding và border cộng thêm ra ngoài
+
+- `border-box`:
+  - width bao gồm:
+    - content
+    - padding
+    - border
+  - nên kích thước thật không tăng thêm
+
+---
+
+# Phần 2 — Layout 3 cột
+
+## Trường hợp KHÔNG dùng border-box
+
+### Sidebar
+
+```text
+250 + (15 x 2)
+= 280px
+```
+
+### Content
+
+```text
+500 + (20 x 2)
+= 540px
+```
+
+### Ads
+
+```text
+250 + (15 x 2)
+= 280px
+```
+
+### Tổng
+
+```text
+280 + 540 + 280
+= 1100px
+```
+
+→ lớn hơn 1000px nên layout bị vỡ.
+
+---
+
+## Trường hợp CÓ dùng border-box
+
+```text
+250 + 500 + 250
+= 1000px
+```
+
+→ layout vừa đúng container.
+
+
 
 ## Câu C1 (10đ) — Debug CSS Layout
 
