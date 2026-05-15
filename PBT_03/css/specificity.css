@@ -1,0 +1,59 @@
+p {
+    color: black;
+}
+
+/* 0,0,1 */
+
+.text {
+    color: blue;
+}
+
+/* 0,1,0 */
+
+.highlight {
+    color: green;
+}
+
+/* 0,1,0 */
+
+p.text {
+    color: orange;
+}
+
+/* 0,1,1 */
+
+p.highlight {
+    color: purple;
+}
+
+/* 0,1,1 */
+
+.text.highlight {
+    color: brown;
+}
+
+/* 0,2,0 */
+
+p.text.highlight {
+    color: pink;
+}
+
+/* 0,2,1 */
+
+#demo {
+    color: red;
+}
+
+/* 1,0,0 */
+
+p#demo {
+    color: cyan;
+}
+
+/* 1,0,1 */
+
+p#demo.text.highlight {
+    color: gold;
+}
+
+/* 1,2,1 */

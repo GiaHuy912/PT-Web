@@ -786,6 +786,73 @@ Chiều rộng thực tế:
 
 → layout vừa đúng container.
 
+## Câu B3:
+## 1. Liệt kê 10 rules + specificity
+
+```text
+1. p                       → (0,0,1)
+2. .text                   → (0,1,0)
+3. .highlight              → (0,1,0)
+4. p.text                  → (0,1,1)
+5. p.highlight             → (0,1,1)
+6. .text.highlight         → (0,2,0)
+7. p.text.highlight        → (0,2,1)
+8. #demo                   → (1,0,0)
+9. p#demo                  → (1,0,1)
+10. p#demo.text.highlight  → (1,2,1)
+```
+
+---
+
+## 2. Element cuối cùng hiển thị màu gì?
+
+→ Màu:
+
+```text
+gold
+```
+
+---
+
+## Giải thích
+
+Rule:
+
+```css
+p#demo.text.highlight
+```
+
+có specificity cao nhất:
+
+```text
+(1,2,1)
+```
+
+nên được ưu tiên áp dụng cuối cùng.
+
+---
+
+## 3. Nếu đổi thứ tự các rules thì kết quả có đổi không?
+
+→ Không đổi.
+
+---
+
+## Giải thích
+
+Vì rule:
+
+```css
+p#demo.text.highlight
+```
+
+vẫn có specificity cao nhất nên vẫn thắng các rule khác.
+
+Chỉ khi:
+- specificity bằng nhau
+
+thì CSS viết sau mới được ưu tiên.
+
 
 
 ## Câu C1 (10đ) — Debug CSS Layout
