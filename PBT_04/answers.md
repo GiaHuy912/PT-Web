@@ -272,3 +272,161 @@ vì `.card` vẫn là `static`.
 - hàng 1: 3 items
 - hàng 2: 3 items
 - hàng 3: còn 1 item ở cột đầu tiên
+
+## Câu C1 (10đ) — Flexbox vs Grid
+
+### 1. Navigation bar ngang
+→ Dùng: **Flexbox**
+
+- Vì navbar là layout 1 chiều (ngang)
+- Flexbox giúp căn trái, giữa, phải dễ dàng bằng:
+```css
+justify-content: space-between;
+align-items: center;
+```
+
+---
+
+### 2. Lưới ảnh Instagram
+→ Dùng: **Grid**
+
+- Vì cần layout nhiều hàng nhiều cột
+- Grid giúp chia cột đều đẹp hơn Flexbox
+
+```css
+grid-template-columns: repeat(3, 1fr);
+```
+
+---
+
+### 3. Layout blog: main content + sidebar
+→ Dùng: **Grid**
+
+- Vì đây là layout 2 chiều
+- Dễ chia sidebar cố định + content co giãn
+
+```css
+grid-template-columns: 250px 1fr;
+```
+
+---
+
+### 4. Footer với 4 cột thông tin
+→ Dùng: **Grid**
+
+- Vì cần chia đều nhiều cột
+- Responsive dễ hơn
+
+```css
+grid-template-columns: repeat(4, 1fr);
+```
+
+---
+
+### 5. Card sản phẩm
+→ Dùng: **Flexbox**
+
+- Vì nội dung trong card là layout dọc
+- Dùng flex-direction: column để nút luôn dính đáy
+
+```css
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    margin-top: auto;
+}
+```
+
+# Câu C2 (10đ) — Debug Flexbox
+
+## Lỗi 1: Card không đều chiều cao
+
+### Nguyên nhân
+- Nội dung mỗi card khác nhau
+- Button không được đẩy xuống đáy
+
+### Cách sửa
+
+```css
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 30%;
+    margin: 1.5%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.card .btn {
+    margin-top: auto;
+}
+```
+
+### Kết quả
+- Các card đều chiều cao
+- Nút "Mua" luôn nằm dưới cùng
+
+---
+
+## Lỗi 2: Item không nằm giữa màn hình
+
+### Nguyên nhân
+- Chưa dùng justify-content và align-items
+
+### Cách sửa
+
+```css
+.hero {
+    height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content {
+    text-align: center;
+}
+```
+
+### Kết quả
+- Item nằm chính giữa cả ngang lẫn dọc
+
+---
+
+## Lỗi 3: Sidebar bị co lại
+
+### Nguyên nhân
+- Flexbox mặc định cho phép flex item co lại
+
+### Cách sửa
+
+```css
+.layout {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+
+    flex-shrink: 0;
+}
+
+.content {
+    flex: 1;
+}
+```
+
+### Kết quả
+- Sidebar giữ nguyên 250px
+- Không bị ép nhỏ khi content dài
+
+---
