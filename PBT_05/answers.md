@@ -180,3 +180,153 @@ width: 960px;
 ```css
 width: 1140px;
 ```
+
+## Câu A4 (5đ) — SCSS Basics
+
+### 1. Variables
+
+SCSS cho phép tạo biến để lưu màu sắc, font-size,...
+
+### Ví dụ
+
+```scss
+$primary-color: blue;
+
+h1 {
+    color: $primary-color;
+}
+```
+
+### Ưu điểm
+
+- Dễ sửa toàn bộ project
+- Code gọn hơn
+- Tránh lặp lại giá trị
+
+---
+
+## 2. Nesting
+
+SCSS cho phép viết CSS lồng nhau giống cấu trúc HTML.
+
+### Ví dụ
+
+```scss
+nav {
+
+    background: black;
+
+    a {
+
+        color: white;
+
+    }
+
+}
+```
+
+### Sau khi compile thành CSS
+
+```css
+nav {
+    background: black;
+}
+
+nav a {
+    color: white;
+}
+```
+
+### Ưu điểm
+
+- Code dễ đọc
+- Nhìn rõ cấu trúc parent-child
+
+---
+
+## 3. Mixins
+
+Mixin giúp tái sử dụng nhiều đoạn CSS.
+
+### Ví dụ
+
+```scss
+@mixin center {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.box {
+
+    @include center;
+
+}
+```
+
+### Ưu điểm
+
+- Tái sử dụng code
+- Giảm lặp CSS
+- Viết responsive nhanh hơn
+
+---
+
+## 4. @extend / Inheritance
+
+Cho phép kế thừa style từ class khác.
+
+### Ví dụ
+
+```scss
+.button {
+
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.btn-primary {
+
+    @extend .button;
+
+    background: blue;
+
+}
+```
+
+### Ưu điểm
+
+- Dùng lại style cũ
+- Code ngắn hơn
+- Dễ maintain
+
+---
+
+## Tại sao trình duyệt không đọc được file .scss?
+
+- Trình duyệt chỉ hiểu:
+  - HTML
+  - CSS
+  - JavaScript
+
+- `.scss` là ngôn ngữ mở rộng của CSS nên browser không thể chạy trực tiếp.
+
+---
+
+## Cần làm gì để SCSS thành CSS?
+
+Cần compile (biên dịch) SCSS → CSS bằng Sass.
+
+### Ví dụ lệnh:
+
+```bash
+sass style.scss style.css
+```
+
+Sau khi compile:
+
+- `style.scss` → file gốc
+- `style.css` → file browser đọc được
