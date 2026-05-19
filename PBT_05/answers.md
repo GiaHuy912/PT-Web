@@ -335,3 +335,233 @@ Sau khi compile:
 ## Câu B3:
 
 lệnh compile: sass scss/style.scss css/style.css
+
+### Phần C
+
+## Câu c1:
+
+# Chọn trang web: YouTube
+
+## 1. Mobile (375px)
+
+### Phân tích:
+
+- Navigation chuyển thành dạng mobile:
+  - Menu sidebar bị ẩn
+  - Xuất hiện icon hamburger ☰
+  - Thanh search nhỏ hơn
+
+- Lưới video:
+  - Hiển thị 1 cột video
+
+- Thành phần bị ẩn:
+  - Sidebar bên trái
+  - Một số icon menu
+  - Text mô tả dài
+
+- Font size:
+  - Nhỏ hơn desktop để phù hợp màn hình điện thoại
+
+---
+
+## 2. Tablet (768px)
+
+### Phân tích:
+
+- Navigation:
+  - Sidebar thu gọn thành icon
+  - Thanh search lớn hơn mobile
+
+- Lưới video:
+  - Khoảng 2–3 cột video
+
+- Thành phần bị ẩn:
+  - Một số menu phụ
+
+- Font size:
+  - Trung bình, lớn hơn mobile
+
+---
+
+## 3. Desktop (1440px)
+
+### Phân tích:
+
+- Navigation:
+  - Sidebar đầy đủ
+  - Search bar dài
+  - Hiển thị đầy đủ icon và menu
+
+- Lưới video:
+  - 5–6 cột video
+
+- Thành phần bị ẩn:
+  - Hầu như không có
+
+- Font size:
+  - Lớn và dễ đọc hơn
+
+---
+
+# Media Queries tìm được trong DevTools
+
+## Media Query 1
+
+```css
+@media (max-width: 656px) {
+
+    #guide {
+        display: none;
+    }
+
+}
+```
+
+### Ý nghĩa:
+Ẩn sidebar khi màn hình nhỏ.
+
+---
+
+## Media Query 2
+
+```css
+@media (min-width: 1000px) {
+
+    .video-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+}
+```
+
+### Ý nghĩa:
+Desktop sẽ hiển thị nhiều cột video hơn.
+
+## Câu c2:
+
+Mobile ( <768px )
+┌──────────────────┐
+│ LOGO   ☰         │
+├──────────────────┤
+│   HERO IMAGE     │
+├──────────────────┤
+│  FOOD CARD       │
+│  FOOD CARD       │
+│  FOOD CARD       │
+│  (1 cột)         │
+├──────────────────┤
+│ FORM ĐẶT BÀN     │
+├──────────────────┤
+│ GOOGLE MAP       │
+├──────────────────┤
+│ FOOTER           │
+└──────────────────┘
+Ẩn menu ngang → dùng hamburger ☰
+Form nằm dưới grid món ăn
+Grid ảnh: 1 cột
+Tablet (768px - 1023px)
+┌──────────────────────────┐
+│ LOGO   MENU   PHONE      │
+├──────────────────────────┤
+│        HERO IMAGE        │
+├──────────────────────────┤
+│ FOOD   FOOD              │
+│ FOOD   FOOD   (2 cột)    │
+│ FOOD   FOOD              │
+├──────────────────────────┤
+│ FORM ĐẶT BÀN             │
+├──────────────────────────┤
+│ GOOGLE MAP               │
+├──────────────────────────┤
+│ FOOTER                   │
+└──────────────────────────┘
+Grid món ăn: 2 cột
+Maps nằm dưới form
+Menu hiện ngang
+Desktop (≥1024px)
+┌────────────────────────────────────┐
+│ LOGO   MENU        PHONE           │
+├────────────────────────────────────┤
+│             HERO IMAGE             │
+├──────────────┬─────────────────────┤
+│ FORM ĐẶT BÀN│ FOOD GRID (3 cột)   │
+│              │ FOOD FOOD FOOD      │
+│              │ FOOD FOOD FOOD      │
+├──────────────┴─────────────────────┤
+│ GOOGLE MAP FULL WIDTH              │
+├────────────────────────────────────┤
+│ FOOTER                             │
+└────────────────────────────────────┘
+Layout 2 cột
+Form thành sidebar bên trái
+Grid món ăn 3 cột
+Không cần sidebar riêng
+
+## CSS skeleton
+
+```
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Arial, sans-serif;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+header,
+footer,
+.hero,
+.map{
+    background: #ddd;
+    padding: 20px;
+}
+
+.food-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.food-card{
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+.booking-form{
+    background: #eee;
+    padding: 20px;
+}
+
+/* Tablet */
+@media (min-width: 768px){
+
+    .food-grid{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+/* Desktop */
+@media (min-width: 1024px){
+
+    .main-layout{
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 20px;
+    }
+
+    .food-grid{
+        grid-template-columns: repeat(3,1fr);
+    }
+
+}
+```
