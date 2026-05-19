@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    padding: 30px;
+
+    font-family: Arial;
+
+    background-color: #f5f5f5;
+}
+
+.title {
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+/* PRODUCTS */
+
+.products {
+
+    display: flex;
+
+    gap: 20px;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+}
+
+.card {
+
+    width: 300px;
+
+    background-color: white;
+
+    border-radius: 10px;
+
+    padding: 15px;
+
+    transition: all 0.3s ease;
+
+    animation: fadeIn 1s ease;
+}
+
+/* CARD HOVER */
+
+.card:hover {
+
+    transform: translateY(-8px);
+
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* IMAGE ZOOM */
+
+.image-box {
+
+    overflow: hidden;
+
+    border-radius: 10px;
+}
+
+.image-box img {
+
+    width: 100%;
+
+    transition: all 0.3s ease;
+}
+
+.image-box:hover img {
+
+    transform: scale(1.1);
+}
+
+/* BUTTON */
+
+button {
+
+    margin-top: 10px;
+
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background-color: black;
+
+    color: white;
+
+    transition: all 0.3s ease;
+}
+
+button:hover {
+
+    background-color: orange;
+
+    color: black;
+
+    transform: scale(1.05);
+}
+
+/* SPINNER */
+
+.spinner {
+
+    width: 60px;
+    height: 60px;
+
+    border: 6px solid #ddd;
+
+    border-top: 6px solid black;
+
+    border-radius: 50%;
+
+    margin: 0 auto 40px;
+
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+/* FADE IN */
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
