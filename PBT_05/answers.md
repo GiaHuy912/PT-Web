@@ -439,63 +439,28 @@ Desktop sẽ hiển thị nhiều cột video hơn.
 
 ## Câu c2:
 
-Mobile ( <768px )
-┌──────────────────┐
-│ LOGO   ☰         │
-├──────────────────┤
-│   HERO IMAGE     │
-├──────────────────┤
-│  FOOD CARD       │
-│  FOOD CARD       │
-│  FOOD CARD       │
-│  (1 cột)         │
-├──────────────────┤
-│ FORM ĐẶT BÀN     │
-├──────────────────┤
-│ GOOGLE MAP       │
-├──────────────────┤
-│ FOOTER           │
-└──────────────────┘
-Ẩn menu ngang → dùng hamburger ☰
-Form nằm dưới grid món ăn
-Grid ảnh: 1 cột
+Mobile (<768px)
+- Header chỉ hiện logo và nút hamburger ☰
+- Hero image full width
+- Grid món ăn hiển thị 1 cột
+- Form đặt bàn nằm dưới danh sách món ăn
+- Google Maps nằm dưới form
+- Footer full width
 Tablet (768px - 1023px)
-┌──────────────────────────┐
-│ LOGO   MENU   PHONE      │
-├──────────────────────────┤
-│        HERO IMAGE        │
-├──────────────────────────┤
-│ FOOD   FOOD              │
-│ FOOD   FOOD   (2 cột)    │
-│ FOOD   FOOD              │
-├──────────────────────────┤
-│ FORM ĐẶT BÀN             │
-├──────────────────────────┤
-│ GOOGLE MAP               │
-├──────────────────────────┤
-│ FOOTER                   │
-└──────────────────────────┘
-Grid món ăn: 2 cột
-Maps nằm dưới form
-Menu hiện ngang
+- Header hiện menu ngang
+- Hero image full width
+- Grid món ăn hiển thị 2 cột
+- Form đặt bàn nằm dưới grid
+- Google Maps nằm dưới form
+- Footer full width
 Desktop (≥1024px)
-┌────────────────────────────────────┐
-│ LOGO   MENU        PHONE           │
-├────────────────────────────────────┤
-│             HERO IMAGE             │
-├──────────────┬─────────────────────┤
-│ FORM ĐẶT BÀN│ FOOD GRID (3 cột)   │
-│              │ FOOD FOOD FOOD      │
-│              │ FOOD FOOD FOOD      │
-├──────────────┴─────────────────────┤
-│ GOOGLE MAP FULL WIDTH              │
-├────────────────────────────────────┤
-│ FOOTER                             │
-└────────────────────────────────────┘
-Layout 2 cột
-Form thành sidebar bên trái
-Grid món ăn 3 cột
-Không cần sidebar riêng
+- Header gồm logo, menu và số điện thoại
+- Hero image full width
+- Layout chia 2 cột
+- Form đặt bàn nằm bên trái giống sidebar
+- Grid món ăn hiển thị 3 cột
+- Google Maps full width phía dưới
+- Footer full width
 
 ## CSS skeleton
 
