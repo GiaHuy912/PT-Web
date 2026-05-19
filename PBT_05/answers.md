@@ -330,3 +330,8 @@ Sau khi compile:
 
 - `style.scss` → file gốc
 - `style.css` → file browser đọc được
+
+
+## Câu B3:
+
+lệnh compile: sass scss/style.scss css/style.css
