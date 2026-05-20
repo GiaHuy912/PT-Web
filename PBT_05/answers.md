@@ -438,22 +438,30 @@ lệnh compile: sass scss/style.scss css/style.css
 Desktop sẽ hiển thị nhiều cột video hơn.
 
 ## Câu c2:
+## Mobile (<768px)
 
-Mobile (<768px)
 - Header chỉ hiện logo và nút hamburger ☰
 - Hero image full width
 - Grid món ăn hiển thị 1 cột
 - Form đặt bàn nằm dưới danh sách món ăn
 - Google Maps nằm dưới form
 - Footer full width
-Tablet (768px - 1023px)
+
+---
+
+## Tablet (768px - 1023px)
+
 - Header hiện menu ngang
 - Hero image full width
 - Grid món ăn hiển thị 2 cột
 - Form đặt bàn nằm dưới grid
 - Google Maps nằm dưới form
 - Footer full width
-Desktop (≥1024px)
+
+---
+
+## Desktop (≥1024px)
+
 - Header gồm logo, menu và số điện thoại
 - Hero image full width
 - Layout chia 2 cột
