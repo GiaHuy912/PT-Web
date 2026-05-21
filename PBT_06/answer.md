@@ -277,3 +277,122 @@ class="hidden md:flex"
 
 - `hidden` → `display: none` (mobile)
 - `md:flex` → từ ≥768px: `display: flex`
+
+### PHẦN C — PHÂN TÍCH (20 điểm)
+#### Câu C1 (10đ) — Tailwind vs CSS thuần
+Component chọn để so sánh: `Product card`  
+`CSS thuần:`
+```
+HTML:
+<div class="product-card">
+    <img src="https://placehold.co/300x300" alt="Product 1">
+    <h3>iPhone 15 Pro Max</h3>
+    <p class="price">29.990.000đ</p>
+    <button class="btn">Mua ngay</button>
+</div>
+
+CSS:
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    background: white;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.product-card h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.price {
+    color: #e74c3c;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+}
+```
+`Tailwind:`
+```
+<div class="border border-gray-300 rounded-lg p-4 text-center bg-white">
+    <img src="..." class="w-full rounded mb-3">
+    <h3 class="text-base md:text-lg mb-2">Tên sản phẩm</h3>
+    <p class="text-red-500 text-lg font-bold mb-3">29.990.000đ</p>
+    <button class="w-full bg-blue-500 text-white px-5 py-2 rounded 
+                   text-sm hover:bg-blue-600">
+        Mua ngay
+    </button>
+</div>
+```
+
+1. HTML file size 
+ 
+| Tiêu chí | CSS thuần | Tailwind |
+|-----------|------------|-----------|
+| HTML size | HTML ngắn, gọn vì chỉ dùng class semantic | HTML dài hơn do nhiều utility class |
+| CSS size | Phải tự viết CSS riêng | Gần như không cần CSS custom |
+| Maintainability | Dễ đọc, dễ quản lý file CSS | Sửa nhanh trực tiếp trong HTML |
+| Reusability | Dùng lại bằng class riêng | Có thể dùng `@apply` để gom class |
+
+2. Maintainability (dễ đọc? dễ sửa?)
+
+| Tiêu chí | CSS thuần | Tailwind |
+|---|---|---|
+| Dễ đọc HTML | HTML ngắn, class dễ hiểu (`product-card`, `btn`) | HTML dài hơn do nhiều utility class |
+| Dễ sửa style | Sửa trong file CSS, áp dụng toàn component | Sửa trực tiếp trong HTML bằng utility class |
+| Debug | Dễ tìm lỗi nếu CSS tổ chức tốt | Nhìn phát biết style nằm đâu, sửa nhanh 
+
+3. Reusability (dùng lại thế nào? @apply?)
+
+| Tiêu chí    | CSS thuần| Tailwind|
+| -| -| - |
+| Reusability | Tạo class riêng (`product-card`, `btn`) rồi dùng lại nhiều nơi | Thường bị lặp nhiều utility class; có thể gom bằng `@apply` hoặc component framework (Vue/React) |
+
+**`@apply`:** Trong file CSS build Tailwind, gom utilities thành class semantic:
+
+```
+@layer components {
+  .card-product {
+    @apply rounded-lg shadow-md hover:shadow-xl transition-shadow;
+  }
+}
+```
+
+Sau đó dùng lại:
+```
+<div class="card-product">
+    ...
+</div>
+```
+
+## Câu C2 — Performance
+
+### 1. HTML dài nhưng CSS output nhỏ hơn Bootstrap?
+
+Bootstrap ship **toàn bộ** grid, components, utilities (~200KB+ minified). Tailwind **JIT/Purge** chỉ giữ class **thực sự xuất hiện** trong HTML/JS → file CSS cuối thường **vài KB–vài chục KB**.
+
+### 2. PurgeCSS / Tailwind JIT
+
+Quét source (HTML, JSX, Vue…) → chỉ **generate CSS cho class tìm thấy**. Loại bỏ hàng nghìn utility không dùng (`bg-fuchsia-900`, `mt-96`, …).
+
+### 3. Khi KHÔNG nên dùng Tailwind (2 tình huống)
+
+1. **Email templates** — hỗ trợ utility class kém, cần inline CSS cổ điển.
+2. **Dự án bắt buộc design system riêng phức tạp** với component API chặt — team đã có hệ thống SCSS/BEM lớn, migrate Tailwind tốn kém hơn lợi ích.
