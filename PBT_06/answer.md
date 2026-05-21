@@ -173,3 +173,107 @@ Không nên dùng Bootstrap khi:
 - Dự án cần tối ưu tốc độ (Bootstrap nặng 180KB)
 - Design phức tạp không khớp grid Bootstrap
 - Muốn học sâu CSS (dùng Bootstrap nhiều sẽ không biết viết CSS thuần)
+
+
+## TRACK B — TAILWINDCSS
+### PHẦN A — ĐỌC HIỂU (20 điểm)
+#### Câu A1 (10đ) — Utility Classes
+```
+<div class="flex items-center justify-between p-4 bg-white shadow-md rounded-lg 
+            hover:shadow-xl transition-shadow duration-300">
+```
+Class|	CSS tương đương
+|-|-|
+flex|	display: flex
+items-center|	align-items: center
+justify-between|	justify-content: space-between
+p-4|	padding: 1rem (16px)
+bg-white|	background-color: #fff
+shadow-md|	box-shadow mức medium
+rounded-lg|	border-radius: 0.5rem
+hover:shadow-xl|	Khi hover => shadow lớn hơn
+transition-shadow|	Transition cho thuộc tính box-shadow
+duration-300|	Thời gian transition 300ms
+
+```
+<img class="w-16 h-16 rounded-full object-cover" ...>
+```
+| Class          | CSS tương đương         |
+| -------------- | ----------------------- |
+| `w-16`         | `width: 4rem` (64px)    |
+| `h-16`         | `height: 4rem`          |
+| `rounded-full` | `border-radius: 9999px` |
+| `object-cover` | `object-fit: cover`     |
+
+```
+<div class="ml-4 flex-1">
+```
+| Class    | CSS tương đương                     |
+| -------- | ----------------------------------- |
+| `ml-4`   | `margin-left: 1rem`                 |
+| `flex-1` | `flex: 1 1 0%` — chiếm phần còn lại |
+
+```
+<h3 class="text-lg font-semibold text-gray-800 truncate">
+```
+| Class           | CSS tương đương                                                  |
+| --------------- | ---------------- |
+| `text-lg`       | `font-size: 1.125rem`                                            |
+| `font-semibold` | `font-weight: 600`                                               |
+| `text-gray-800` | Màu chữ gray-800                                                 |
+| `truncate`      | `overflow: hidden; text-overflow: ellipsis; white-space: nowrap` |
+
+```
+<p class="text-sm text-gray-500">
+```
+| Class           | CSS tương đương       |
+| --------------- | --------------------- |
+| `text-sm`       | `font-size: 0.875rem` |
+| `text-gray-500` | Màu chữ gray-500      |
+
+```
+<button class="px-4 py-2 bg-blue-500 text-white rounded-md 
+               hover:bg-blue-600 focus:ring-2 focus:ring-blue-300">
+```
+| Class                 | CSS tương đương              |
+| --------------------- | ---------------------------- |
+| `px-4`                | `padding-left/right: 1rem`   |
+| `py-2`                | `padding-top/bottom: 0.5rem` |
+| `bg-blue-500`         | Nền xanh 500                 |
+| `text-white`          | Chữ trắng                    |
+| `rounded-md`          | `border-radius: 0.375rem`    |
+| `hover:bg-blue-600`   | Hover => nền đậm hơn          |
+| `focus:ring-2`        | Focus => ring 2px             |
+| `focus:ring-blue-300` | Màu ring xanh nhạt           |
+
+#### Câu A2 (10đ) — Responsive & States
+
+1. Prefix responsive (md:, lg:, xl:)
+
+Tailwind hoạt động theo kiểu Mobile-First giống Bootstrap, tức là ưu tiên code cho màn hình điện thoại trước rồi mới mở rộng lên màn hình lớn.
+
+`md:grid-cols-2 lg:grid-cols-4` nghĩa là:
+| Viewport       | Grid columns     |
+| -------------- | ---------------- |
+| `<768px`       | 1 cột (mặc định) |
+| `≥768px (md)`  | 2 cột            |
+| `≥1024px (lg)` | 4 cột            |
+
+### 2. State modifiers
+
+| Modifier | Khi nào áp dụng |
+|----------|------------------|
+| `hover:` | Khi rê chuột vào element |
+| `focus:` | Khi element được focus |
+| `active:` | Khi đang giữ chuột nhấn |
+| `group-hover:` | Khi phần tử cha có class `group` được hover |
+
+1. Ẩn mobile, hiện flex từ tablet  
+Tương đương Bootstrap `d-none d-md-flex`:
+
+```
+class="hidden md:flex"
+```
+
+- `hidden` → `display: none` (mobile)
+- `md:flex` → từ ≥768px: `display: flex`
