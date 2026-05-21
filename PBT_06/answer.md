@@ -49,3 +49,47 @@
 
 .container-md: Chiếm 100% chiều rộng (như fluid) ở các màn hình nhỏ. Chỉ khi màn hình đạt đến kích thước md (>= 768px) trở lên, nó mới co lại và có max-width cố định giống như .container bình thường.
 ```
+
+### PHẦN C — PHÂN TÍCH (20 điểm)
+#### Câu C1 (10đ) — Tùy biến Bootstrap
+1. Quy trình đổi màu primary từ xanh sang #E63946:
+```
+   Bước 1: Chuẩn bị công cụ
+    - Cài Node.js
+    - Cài Sass: npm install -g sass
+    - Tải Bootstrap source code (file .scss) từ getbootstrap.com
+
+    Bước 2: Tạo file tùy chỉnh
+    - Tạo file custom.scss:
+
+    ```
+    scss$primary: #E63946;
+    @import "bootstrap/scss/bootstrap";
+    ```
+
+    Bước 3: Compile
+    - Chạy lệnh: sass custom.scss custom.css
+
+    Bước 4: Dùng file CSS đã compile
+    <link rel="stylesheet" href="custom.css">
+
+    - Không sửa trực tiếp file Bootstrap gốc, mà tạo file custom.scss riêng, khai báo biến trước khi import Bootstrap.
+```
+2. Tại sao KHÔNG nên override trực tiếp?
+Cách sai:
+`css.btn-primary { background: red; }`
+
+Lý do:
+```
+- Chỉ đổi được background, không đổi hover, active, disabled
+- Phải override nhiều class: .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-outline-primary, .bg-primary, .text-primary, .border-primary...
+- Tốn nhiều dòng code, dễ bỏ sót
+- Khó bảo trì khi cần đổi màu lần 2
+```
+Cách dung (dùng SASS variables):
+`$primary: #E63946;`
+```
+- Đổi 1 biến = tất cả class liên quan tự động đổi
+- Bootstrap tự tính toán màu hover, active, disabled dựa trên màu gốc
+- Dễ bảo trì, chỉnh sửa sau này
+```
