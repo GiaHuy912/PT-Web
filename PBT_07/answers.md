@@ -447,3 +447,182 @@ và ${ } để chèn biến vào chuỗi.
 - Không cần nối bằng dấu +
 - Hỗ trợ xuống dòng trực tiếp
 ```
+
+### Phần C
+
+## Câu C1:
+
+## Các lỗi trong code
+
+### Lỗi 1 — Thiếu dấu `;`
+
+```javascript
+return "Phần trăm giảm không hợp lệ"
+```
+
+### Sửa
+
+```javascript
+return "Phần trăm giảm không hợp lệ";
+```
+
+---
+
+### Lỗi 2 — `giaBan` là chuỗi `"100000"`
+
+```javascript
+const gia = tinhGiaGiamGia("100000", 20)
+```
+
+### Giải thích
+
+```txt
+"100000" là string, nên nên ép kiểu sang number.
+```
+
+### Sửa
+
+```javascript
+const gia = tinhGiaGiamGia(100000, 20);
+```
+
+---
+
+### Lỗi 3 — Dùng `=` thay vì `===`
+
+```javascript
+if (giaSauGiam = 0)
+```
+
+### Giải thích
+
+```txt
+= là gán giá trị
+=== mới là so sánh
+```
+
+### Sửa
+
+```javascript
+if (giaSauGiam === 0)
+```
+
+---
+
+### Lỗi 4 — Không kiểm tra `giaBan` có phải số không
+
+### Giải thích
+
+```txt
+Nếu nhập chuỗi hoặc ký tự sẽ lỗi logic.
+```
+
+### Sửa
+
+```javascript
+if (isNaN(giaBan)) {
+    return "Giá bán không hợp lệ";
+}
+```
+
+---
+
+### Lỗi 5 — `phanTramGiam` không kiểm tra kiểu dữ liệu
+
+### Sửa
+
+```javascript
+if (isNaN(phanTramGiam)) {
+    return "Phần trăm giảm không hợp lệ";
+}
+```
+
+---
+
+### Lỗi 6 — Dùng `var` trong vòng lặp với `setTimeout`
+
+```javascript
+for (var i = 0; i < 5; i++)
+```
+
+### Giải thích
+
+```txt
+var không có block scope.
+Sau 1 giây vòng lặp đã chạy xong nên i = 5.
+Kết quả in ra:
+Item 5
+Item 5
+Item 5
+...
+```
+
+### Sửa bằng `let`
+
+```javascript
+for (let i = 0; i < 5; i++)
+```
+
+```txt
+let có block scope nên mỗi vòng lặp giữ giá trị riêng.
+```
+
+---
+
+## Code sau khi sửa
+
+```javascript
+function tinhGiaGiamGia(giaBan, phanTramGiam) {
+
+    if (isNaN(giaBan)) {
+
+        return "Giá bán không hợp lệ";
+
+    }
+
+    if (isNaN(phanTramGiam)) {
+
+        return "Phần trăm giảm không hợp lệ";
+
+    }
+
+    if (phanTramGiam < 0 || phanTramGiam > 100) {
+
+        return "Phần trăm giảm không hợp lệ";
+
+    }
+
+    let giamGia = giaBan * phanTramGiam / 100;
+
+    let giaSauGiam = giaBan - giamGia;
+6
+    if (giaSauGiam === 0) {
+
+        console.log("Sản phẩm miễn phí!");
+
+    }
+
+    return giaSauGiam;
+
+}
+
+// Test
+
+const gia = tinhGiaGiamGia(100000, 20);
+
+console.log("Giá sau giảm: " + gia + "đ");
+
+const gia2 = tinhGiaGiamGia(50000, 110);
+
+console.log("Giá: " + gia2);
+
+for (let i = 0; i < 5; i++) {
+
+    setTimeout(function () {
+
+        console.log("Item " + i);
+
+    }, 1000);
+
+}
+```
