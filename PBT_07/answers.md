@@ -403,3 +403,47 @@ Khác 0 nên truthy.
 Có chứa ký tự khoảng trắng nên không phải chuỗi rỗng.
 → truthy
 ```
+
+## Câu A5:
+
+## Cách 1
+
+```javascript
+var greeting = `Xin chào ${name}! Bạn ${age} tuổi.`;
+```
+
+---
+
+## Cách 2
+
+```javascript
+var url = `https://api.example.com/users/${userId}/orders?page=${page}`;
+```
+
+---
+
+## Cách 3
+
+```javascript
+var html = `
+<div class="card">
+    <h2>${title}</h2>
+    <p>${description}</p>
+    <span>Giá: ${price}đ</span>
+</div>
+`;
+```
+
+---
+
+## Giải thích
+
+```txt
+Template literal dùng dấu backtick ` `
+và ${ } để chèn biến vào chuỗi.
+
+Ưu điểm:
+- Code dễ đọc hơn
+- Không cần nối bằng dấu +
+- Hỗ trợ xuống dòng trực tiếp
+```
