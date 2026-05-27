@@ -107,3 +107,97 @@ Ngoài block: 1
 
 - `let` có block scope.
 - Biến trong block khác biến bên ngoài.
+
+## Câu A2:
+
+```javascript
+console.log(typeof null);          // "object"
+console.log(typeof undefined);     // "undefined"
+console.log(typeof NaN);           // "number"
+
+console.log("5" + 3);              // "53"
+console.log("5" - 3);              // 2
+console.log("5" * "3");            // 15
+
+console.log(true + true);          // 2
+
+console.log([] + []);              // ""
+console.log([] + {});              // "[object Object]"
+console.log({} + []);              // 0
+```
+
+---
+
+## Giải thích
+
+### `"5" + 3`
+
+```txt
+Toán tử + ưu tiên nối chuỗi.
+Số 3 được ép thành chuỗi "3".
+Kết quả: "53"
+```
+
+---
+
+### `"5" - 3`
+
+```txt
+Toán tử - chỉ dùng cho toán học.
+JavaScript ép "5" thành số 5.
+Kết quả: 2
+```
+
+---
+
+## Giải thích thêm
+
+### `typeof null`
+
+```txt
+Đây là bug cũ của JavaScript.
+null thực chất không phải object nhưng typeof vẫn trả về "object".
+```
+
+### `typeof NaN`
+
+```txt
+NaN nghĩa là Not a Number nhưng kiểu dữ liệu vẫn là number.
+```
+
+### `true + true`
+
+```txt
+true được ép thành 1.
+
+1 + 1 = 2
+```
+
+### `[] + []`
+
+```txt
+Hai mảng rỗng bị ép thành chuỗi rỗng.
+
+"" + "" = ""
+```
+
+### `[] + {}`
+
+```txt
+[] → ""
+{} → "[object Object]"
+
+Kết quả:
+"[object Object]"
+```
+
+### `{} + []`
+
+```txt
+JavaScript hiểu {} là block code.
+
++[] → 0
+
+Kết quả cuối:
+0
+```
