@@ -306,7 +306,7 @@ Nên dùng ===
 - Dễ debug
 - Code rõ ràng hơn
 
-## Câu A3:
+## Câu A4:
 
 ## Tất cả giá trị Falsy trong JavaScript
 
