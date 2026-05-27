@@ -201,3 +201,107 @@ JavaScript hiểu {} là block code.
 Kết quả cuối:
 0
 ```
+
+## Câu A3:
+
+```javascript
+console.log(5 == "5");              // true
+console.log(5 === "5");             // false
+
+console.log(null == undefined);     // true
+console.log(null === undefined);    // false
+
+console.log(NaN == NaN);            // false
+
+console.log(0 == false);            // true
+console.log(0 === false);           // false
+
+console.log("" == false);           // true
+```
+
+---
+
+## Giải thích
+
+### `==`
+
+```txt
+So sánh lỏng.
+JavaScript sẽ tự ép kiểu dữ liệu trước khi so sánh.
+```
+
+Ví dụ:
+
+```javascript
+5 == "5"
+```
+
+→ `"5"` bị ép thành số `5`
+
+→ kết quả `true`
+
+---
+
+### `===`
+
+```txt
+So sánh nghiêm ngặt.
+So sánh cả giá trị và kiểu dữ liệu.
+Không ép kiểu.
+```
+
+Ví dụ:
+
+```javascript
+5 === "5"
+```
+
+→ number khác string
+
+→ kết quả `false`
+
+---
+
+## Trường hợp đặc biệt
+
+### `NaN == NaN`
+
+```txt
+NaN không bao giờ bằng chính nó.
+```
+
+---
+
+### `0 == false`
+
+```txt
+false bị ép thành 0
+
+0 == 0 → true
+```
+
+---
+
+### `"" == false`
+
+```txt
+Chuỗi rỗng bị ép thành 0
+false cũng thành 0
+
+0 == 0 → true
+```
+
+---
+
+## Nên dùng `==` hay `===`?
+
+```txt
+Nên dùng ===
+```
+
+### Vì:
+
+- An toàn hơn
+- Không bị lỗi ép kiểu ngầm
+- Dễ debug
+- Code rõ ràng hơn
