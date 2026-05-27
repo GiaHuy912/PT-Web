@@ -305,3 +305,101 @@ Nên dùng ===
 - Không bị lỗi ép kiểu ngầm
 - Dễ debug
 - Code rõ ràng hơn
+
+## Câu A3:
+
+## Tất cả giá trị Falsy trong JavaScript
+
+```javascript
+false
+0
+-0
+0n
+""
+null
+undefined
+NaN
+```
+
+---
+
+## Dự đoán kết quả
+
+```javascript
+if ("0") console.log("A");   // In
+if ("") console.log("B");    // Không in
+if ([]) console.log("C");    // In
+if ({}) console.log("D");    // In
+if (null) console.log("E");  // Không in
+if (0) console.log("F");     // Không in
+if (-1) console.log("G");    // In
+if (" ") console.log("H");   // In
+```
+
+---
+
+## Giải thích
+
+### `"0"`
+
+```txt
+Chuỗi có ký tự nên là truthy.
+```
+
+---
+
+### `""`
+
+```txt
+Chuỗi rỗng là falsy.
+```
+
+---
+
+### `[]`
+
+```txt
+Mảng rỗng vẫn là object.
+Object luôn truthy.
+```
+
+---
+
+### `{}`
+
+```txt
+Object rỗng vẫn truthy.
+```
+
+---
+
+### `null`
+
+```txt
+Falsy.
+```
+
+---
+
+### `0`
+
+```txt
+Falsy.
+```
+
+---
+
+### `-1`
+
+```txt
+Khác 0 nên truthy.
+```
+
+---
+
+### `" "` (space)
+
+```txt
+Có chứa ký tự khoảng trắng nên không phải chuỗi rỗng.
+→ truthy
+```
