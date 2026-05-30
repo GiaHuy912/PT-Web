@@ -302,3 +302,124 @@ let:
 - Tạo biến riêng cho từng vòng lặp
 - Nên dùng trong JavaScript hiện đại
 ```
+
+## Câu A3:
+
+```javascript
+const nums = [1,2,3,4,5,6,7,8,9,10];
+```
+
+## 1. Lấy các số chẵn
+
+```javascript
+nums.filter(num => num % 2 === 0);
+```
+
+Kết quả:
+
+```javascript
+[2, 4, 6, 8, 10]
+```
+
+---
+
+## 2. Nhân mỗi số với 3
+
+```javascript
+nums.map(num => num * 3);
+```
+
+Kết quả:
+
+```javascript
+[3, 6, 9, 12, 15, 18, 21, 24, 27, 30]
+```
+
+---
+
+## 3. Tính tổng tất cả
+
+```javascript
+nums.reduce((sum, num) => sum + num, 0);
+```
+
+Kết quả:
+
+```javascript
+55
+```
+
+---
+
+## 4. Tìm số đầu tiên > 7
+
+```javascript
+nums.find(num => num > 7);
+```
+
+Kết quả:
+
+```javascript
+8
+```
+
+---
+
+## 5. Kiểm tra có số > 10 không
+
+```javascript
+nums.some(num => num > 10);
+```
+
+Kết quả:
+
+```javascript
+false
+```
+
+---
+
+## 6. Kiểm tra tất cả đều > 0
+
+```javascript
+nums.every(num => num > 0);
+```
+
+Kết quả:
+
+```javascript
+true
+```
+
+---
+
+## 7. Tạo mảng "Số X là [chẵn/lẻ]"
+
+```javascript
+nums.map(num => `Số ${num} là ${num % 2 === 0 ? "chẵn" : "lẻ"}`);
+```
+
+Kết quả:
+
+```javascript
+[
+ "Số 1 là lẻ",
+ "Số 2 là chẵn",
+ "Số 3 là lẻ",
+ ...
+]
+```
+
+---
+
+## 8. Đảo ngược mảng (không mutate mảng gốc)
+
+```javascript
+[...nums].reverse();
+```
+
+Kết quả:
+
+```javascript
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+```
