@@ -679,3 +679,178 @@ console.log(product.price);
 console.log(product.specs.ram);
 → 16
 ```
+
+### Phần C
+
+## Câu C1:
+
+## Refactor Code
+
+### Code sau khi refactor
+
+```javascript
+const processOrders = orders =>
+    orders
+        .filter(({ status, total }) =>
+            status === "completed" && total > 100000
+        )
+        .map(({ id, customer, total }) => ({
+            id,
+            customer,
+            total,
+            discount: total * 0.1,
+            finalTotal: total * 0.9
+        }))
+        .sort((a, b) => b.finalTotal - a.finalTotal);
+```
+
+### Các kỹ thuật đã sử dụng
+
+- Arrow Function
+
+```javascript
+const processOrders = orders => ...
+```
+
+- filter()
+
+```javascript
+.filter(({ status, total }) =>
+    status === "completed" && total > 100000
+)
+```
+
+- map()
+
+```javascript
+.map(({ id, customer, total }) => ({
+    id,
+    customer,
+    total,
+    discount: total * 0.1,
+    finalTotal: total * 0.9
+}))
+```
+
+- sort()
+
+```javascript
+.sort((a, b) => b.finalTotal - a.finalTotal)
+```
+
+- Destructuring
+
+```javascript
+({ status, total })
+({ id, customer, total })
+```
+
+## Câu C2:
+
+## Thiết kế miniArray
+
+### Cài đặt
+
+```javascript
+const miniArray = {
+
+    map(arr, fn) {
+
+        const result = [];
+
+        for (let i = 0; i < arr.length; i++) {
+            result.push(fn(arr[i], i, arr));
+        }
+
+        return result;
+    },
+
+    filter(arr, fn) {
+
+        const result = [];
+
+        for (let i = 0; i < arr.length; i++) {
+
+            if (fn(arr[i], i, arr)) {
+                result.push(arr[i]);
+            }
+
+        }
+
+        return result;
+    },
+
+    reduce(arr, fn, initialValue) {
+
+        let accumulator = initialValue;
+
+        for (let i = 0; i < arr.length; i++) {
+            accumulator = fn(accumulator, arr[i], i, arr);
+        }
+
+        return accumulator;
+    }
+
+};
+```
+
+---
+
+### Test
+
+```javascript
+console.log(
+    miniArray.map([1, 2, 3], x => x * 2)
+);
+// [2, 4, 6]
+
+console.log(
+    miniArray.filter([1, 2, 3, 4], x => x > 2)
+);
+// [3, 4]
+
+console.log(
+    miniArray.reduce(
+        [1, 2, 3, 4],
+        (a, b) => a + b,
+        0
+    )
+);
+// 10
+```
+
+---
+
+### Kết quả
+
+```text
+[2, 4, 6]
+[3, 4]
+10
+```
+
+### Giải thích
+
+- `map()`:
+  - Duyệt qua từng phần tử.
+  - Áp dụng hàm `fn`.
+  - Lưu kết quả vào mảng mới.
+
+- `filter()`:
+  - Duyệt từng phần tử.
+  - Nếu `fn()` trả về `true` thì thêm vào mảng kết quả.
+
+- `reduce()`:
+  - Dùng biến `accumulator` để tích lũy giá trị.
+  - Mỗi vòng lặp gọi `fn(accumulator, currentValue)`.
+  - Trả về kết quả cuối cùng.
+
+- Không sử dụng:
+  - `Array.prototype.map`
+  - `Array.prototype.filter`
+  - `Array.prototype.reduce`
+
+- Chỉ sử dụng:
+  - `for`
+  - `if`
+  - hàm callback truyền vào.
