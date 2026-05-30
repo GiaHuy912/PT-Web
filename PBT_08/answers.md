@@ -423,3 +423,259 @@ Kết quả:
 ```javascript
 [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 ```
+
+## Câu A4:
+
+## Code
+
+```javascript
+const product = {
+    name: "iPhone 16",
+    price: 25990000,
+    specs: {
+        ram: 8,
+        storage: 256,
+        color: "Titan"
+    }
+};
+
+// Destructuring
+const { name, price, specs: { ram, color } } = product;
+
+console.log(name, price, ram, color);
+console.log(specs);
+
+// Spread
+const updated = { ...product, price: 23990000, sale: true };
+
+console.log(updated.price);
+console.log(updated.sale);
+console.log(product.price);
+
+// Spread gotcha
+const copy = { ...product };
+
+copy.specs.ram = 16;
+
+console.log(product.specs.ram);
+```
+
+---
+
+## 1. Destructuring
+
+```javascript
+console.log(name, price, ram, color);
+```
+
+Output:
+
+```txt
+iPhone 16 25990000 8 Titan
+```
+
+---
+
+```javascript
+console.log(specs);
+```
+
+Output:
+
+```txt
+ReferenceError: specs is not defined
+```
+
+### Giải thích
+
+Trong destructuring:
+
+```javascript
+const {
+    name,
+    price,
+    specs: { ram, color }
+} = product;
+```
+
+chỉ tạo ra các biến:
+
+```javascript
+name
+price
+ram
+color
+```
+
+Không tạo biến `specs`.
+
+---
+
+## 2. Spread
+
+```javascript
+const updated = {
+    ...product,
+    price: 23990000,
+    sale: true
+};
+```
+
+---
+
+```javascript
+console.log(updated.price);
+```
+
+Output:
+
+```txt
+23990000
+```
+
+---
+
+```javascript
+console.log(updated.sale);
+```
+
+Output:
+
+```txt
+true
+```
+
+---
+
+```javascript
+console.log(product.price);
+```
+
+Output:
+
+```txt
+25990000
+```
+
+### Giải thích
+
+Spread tạo object mới.
+
+```javascript
+updated.price
+```
+
+đổi thành:
+
+```txt
+23990000
+```
+
+nhưng:
+
+```javascript
+product.price
+```
+
+vẫn giữ nguyên:
+
+```txt
+25990000
+```
+
+---
+
+## 3. Spread Gotcha
+
+```javascript
+const copy = { ...product };
+
+copy.specs.ram = 16;
+
+console.log(product.specs.ram);
+```
+
+Output:
+
+```txt
+16
+```
+
+---
+
+### Tại sao?
+
+Spread chỉ copy nông (Shallow Copy).
+
+```javascript
+const copy = { ...product };
+```
+
+sao chép:
+
+```javascript
+name
+price
+```
+
+nhưng object lồng bên trong:
+
+```javascript
+specs
+```
+
+vẫn dùng chung vùng nhớ.
+
+Minh họa:
+
+```txt
+product
+   │
+   └── specs ──► { ram: 8 }
+
+copy
+   │
+   └── specs ──► cùng object trên
+```
+
+Khi:
+
+```javascript
+copy.specs.ram = 16;
+```
+
+thì:
+
+```javascript
+product.specs.ram
+```
+
+cũng thành:
+
+```txt
+16
+```
+
+---
+
+## Kết luận
+
+```txt
+console.log(name, price, ram, color);
+→ iPhone 16 25990000 8 Titan
+
+console.log(specs);
+→ ReferenceError
+
+console.log(updated.price);
+→ 23990000
+
+console.log(updated.sale);
+→ true
+
+console.log(product.price);
+→ 25990000
+
+console.log(product.specs.ram);
+→ 16
+```
