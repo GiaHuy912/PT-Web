@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý thiết bị</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>Quản lý Thiết bị Máy tính</h1>
+
+        <div class="language">
+            <button class="active">Tiếng Việt</button>
+            <button>English</button>
+        </div>
+    </header>
+
+    <div class="toolbar">
+        <button id="openModal">Thêm Thiết bị</button>
+
+        <input type="text" placeholder="Tìm kiếm thiết bị...">
+    </div>
+
+    <div class="device-grid">
+
+        <div class="card">
+            <h3>Dell OptiPlex 7090</h3>
+            <p>SN: DL7090001</p>
+            <p>Máy bàn</p>
+            <p class="active-status">Hoạt động</p>
+
+            <div class="actions">
+                <button>Sửa</button>
+                <button>Xóa</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>HP LaserJet Pro M404</h3>
+            <p>SN: HP404001</p>
+            <p>Máy in</p>
+            <p class="active-status">Hoạt động</p>
+
+            <div class="actions">
+                <button>Sửa</button>
+                <button>Xóa</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Lenovo ThinkPad X1</h3>
+            <p>SN: LNX1-001</p>
+            <p>Laptop</p>
+            <p class="active-status">Hoạt động</p>
+
+            <div class="actions">
+                <button>Sửa</button>
+                <button>Xóa</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+
+        <span class="close" id="closeModal">&times;</span>
+
+        <h2>Thêm Thiết bị</h2>
+
+        <form>
+
+            <div class="form-row">
+                <div>
+                    <label>Tên</label>
+                    <input type="text">
+                </div>
+
+                <div>
+                    <label>Số Serial</label>
+                    <input type="text">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label>Loại</label>
+                    <select>
+                        <option>Laptop</option>
+                        <option>Máy bàn</option>
+                        <option>Máy in</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Ngày mua</label>
+                    <input type="date">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label>Bảo hành</label>
+                    <select>
+                        <option>1 năm</option>
+                        <option>2 năm</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Email quản lý</label>
+                    <input type="email">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div>
+                    <label>Trạng thái</label>
+                    <select>
+                        <option>Hoạt động</option>
+                        <option>Không hoạt động</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button type="button" id="cancelBtn">Hủy</button>
+                <button type="submit">Lưu</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
