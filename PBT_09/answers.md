@@ -514,3 +514,207 @@ document.querySelector("#decrementBtn")
 8. Decrement không lưu history
 
 => Có **8 lỗi**, yêu cầu đề bài chỉ cần tìm ít nhất 7 lỗi.
+
+# Câu C2 
+
+## 1. Tại sao bind event lên 1000 elements là BAD PRACTICE?
+
+Ví dụ:
+
+```javascript
+items.forEach(item => {
+    item.addEventListener("click", handleClick);
+});
+```
+
+Nếu có 1000 phần tử:
+
+- Tạo 1000 event listeners
+- Tốn RAM hơn
+- Tốn thời gian khởi tạo
+- DOM update chậm hơn
+- Khó bảo trì code
+
+Khi số lượng phần tử tăng lên (5000, 10000...) hiệu năng giảm đáng kể.
+
+---
+
+## 2. Event Delegation giải quyết thế nào?
+
+Thay vì:
+
+```javascript
+1000 phần tử
+↓
+1000 event listeners
+```
+
+Ta dùng:
+
+```javascript
+1 phần tử cha
+↓
+1 event listener
+```
+
+Ví dụ:
+
+```javascript
+const list =
+document.querySelector("#list");
+
+list.addEventListener("click", (e) => {
+
+    if(e.target.classList.contains("item")){
+        console.log(e.target.textContent);
+    }
+
+});
+```
+
+HTML:
+
+```html
+<ul id="list">
+    <li class="item">A</li>
+    <li class="item">B</li>
+    <li class="item">C</li>
+</ul>
+```
+
+### Ưu điểm
+
+- Chỉ cần 1 listener
+- Tiết kiệm bộ nhớ
+- Hoạt động với phần tử tạo động
+- Hiệu năng tốt hơn
+
+---
+
+# 3. Vấn đề Reflow
+
+Code gốc:
+
+```javascript
+for (let i = 0; i < 1000; i++) {
+
+    const div =
+    document.createElement("div");
+
+    div.textContent =
+    `Item ${i}`;
+
+    document.body.appendChild(div);
+
+}
+```
+
+Mỗi lần:
+
+```javascript
+appendChild()
+```
+
+trình duyệt phải:
+
+```text
+Cập nhật DOM
+→ Recalculate Layout
+→ Repaint
+```
+
+1000 phần tử:
+
+```text
+1000 lần reflow
+1000 lần repaint
+```
+
+=> Chậm.
+
+---
+
+# 4. Refactor bằng DocumentFragment
+
+```javascript
+const fragment =
+document.createDocumentFragment();
+
+for(let i = 0; i < 1000; i++){
+
+    const div =
+    document.createElement("div");
+
+    div.textContent =
+    `Item ${i}`;
+
+    fragment.appendChild(div);
+
+}
+
+document.body.appendChild(fragment);
+```
+
+---
+
+# 5. Tại sao nhanh hơn?
+
+`DocumentFragment` là vùng nhớ tạm:
+
+```text
+RAM
+│
+├── div 1
+├── div 2
+├── div 3
+...
+├── div 1000
+```
+
+Trong quá trình loop:
+
+```javascript
+fragment.appendChild(...)
+```
+
+KHÔNG tác động lên DOM thật.
+
+Chỉ đến cuối:
+
+```javascript
+document.body.appendChild(fragment);
+```
+
+mới thêm toàn bộ vào DOM.
+
+Kết quả:
+
+```text
+1 lần reflow
+1 lần repaint
+```
+
+thay vì:
+
+```text
+1000 lần reflow
+1000 lần repaint
+```
+
+---
+
+# Kết luận
+
+### Event Delegation
+
+- 1000 phần tử → chỉ 1 event listener
+- Tiết kiệm RAM
+- Dễ quản lý
+- Hỗ trợ phần tử tạo động
+
+### DocumentFragment
+
+- Tạo phần tử trong bộ nhớ trước
+- Append vào DOM một lần duy nhất
+- Giảm số lần reflow/repaint
+- Hiệu năng cao hơn đáng kể khi render nhiều phần tử
