@@ -1,0 +1,68 @@
+<html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Keyboard Accessibility Demo</h1>
+
+    <button id="openPalette"
+        aria-label="Mở command palette">
+        Ctrl + K
+    </button>
+
+    <div class="gallery">
+
+        <button id="prev"
+            aria-label="Ảnh trước">
+            ←
+        </button>
+
+        <img
+            id="galleryImage"
+            src="https://tse2.mm.bing.net/th/id/OIP.ykHD0-T4fVCf-Z31QkTE7gHaDb?pid=Api&P=0&h=180"
+            alt="Gallery Image"
+        >
+
+        <button id="next"
+            aria-label="Ảnh tiếp theo">
+            →
+        </button>
+
+    </div>
+
+</div>
+
+<div id="modal" class="modal hidden">
+    <div class="modal-content">
+        <img
+            id="modalImage"
+            src=""
+            alt="Modal Image"
+        >
+    </div>
+</div>
+
+<div id="palette" class="palette hidden">
+
+    <input
+        id="commandInput"
+        type="text"
+        placeholder="Nhập command..."
+        aria-label="Command Search"
+    >
+
+    <ul id="commandList"></ul>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
