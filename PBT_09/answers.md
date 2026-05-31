@@ -198,3 +198,99 @@ Chỉ hiển thị như văn bản, không thực thi JavaScript.
 - Dùng `innerHTML` khi cần chèn HTML.
 - Dùng `textContent` khi hiển thị dữ liệu người dùng.
 - Không đưa dữ liệu người dùng trực tiếp vào `innerHTML` để tránh XSS.
+
+## Câu A3 
+
+### Output khi click vào button
+
+```javascript
+document.querySelector("#outer").addEventListener("click", () => {
+    console.log("OUTER");
+});
+
+document.querySelector("#inner").addEventListener("click", () => {
+    console.log("INNER");
+});
+
+document.querySelector("#btn").addEventListener("click", (e) => {
+    console.log("BUTTON");
+});
+```
+
+Kết quả:
+
+```text
+BUTTON
+INNER
+OUTER
+```
+
+---
+
+### Giải thích
+
+Sự kiện click xảy ra trên button trước.
+
+Sau đó xảy ra **Event Bubbling** (nổi bọt):
+
+```text
+button
+   ↑
+inner
+   ↑
+outer
+```
+
+Sự kiện truyền từ phần tử con lên phần tử cha.
+
+Thứ tự:
+
+1. BUTTON
+2. INNER
+3. OUTER
+
+---
+
+### Nếu bỏ comment stopPropagation()
+
+```javascript
+document.querySelector("#btn").addEventListener("click", (e) => {
+    console.log("BUTTON");
+    e.stopPropagation();
+});
+```
+
+Kết quả:
+
+```text
+BUTTON
+```
+
+---
+
+### Giải thích
+
+`e.stopPropagation()` ngăn sự kiện tiếp tục nổi bọt lên các phần tử cha.
+
+Luồng sự kiện:
+
+```text
+BUTTON
+✖ Dừng tại đây
+```
+
+Không chạy:
+
+```text
+INNER
+OUTER
+```
+
+---
+
+### Kết luận
+
+| Trường hợp | Output |
+|------------|---------|
+| Không dùng stopPropagation() | BUTTON → INNER → OUTER |
+| Có stopPropagation() | BUTTON |
